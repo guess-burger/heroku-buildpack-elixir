@@ -64,9 +64,11 @@ function compile_app() {
   local git_dir_value=$GIT_DIR
   unset GIT_DIR
 
+  compile_command_l=${compile_command:-"compile --force"}
+
   cd $build_path
   output_section "Compiling"
-  mix compile --force || exit 1
+  mix $compile_command_l || exit 1
 
   mix deps.clean --unused
 
